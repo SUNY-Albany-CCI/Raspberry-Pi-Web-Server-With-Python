@@ -24,16 +24,18 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     self.end_headers()
 
     nameString = query['name']
+    clientAddress = self.client_address[0]
 
     if nameString[0]:
       self.wfile.write("<!DOCTYPE html>")
       self.wfile.write("<html>")
       self.wfile.write("<body>")
-      self.wfile.write("<h1>Raspberry Pi Rocks !</h1>")
-      self.wfile.write("<p>Welcome " + nameString[0] + "</p>")
+      self.wfile.write("<h1>Welcome " + nameString[0] + "</h1>")
+      self.wfile.write("<h2>from " + clientAddress + "</h2>")
       self.wfile.write("</body>")
       self.wfile.write("</html>")
       self.wfile.close()
+
 
 
 Handler = MyHandler
